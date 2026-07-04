@@ -41,7 +41,7 @@ deadline. There was no way to run a clean experiment first. The choice had to be
 on assumptions, and once made it couldn't be cheaply undone.
 
 The default was a business case with one payoff number per option, maybe three if the
-author was careful. That framing quietly assumes everyone will trade expected value
+author was careful. That framing quietly assumed everyone would trade expected value
 against tail risk one-for-one, and it hid the fact that the options had very different
 downside shapes. The debate kept circling the point estimates, which were the least
 trustworthy numbers in the room.
@@ -55,8 +55,8 @@ recommendation was an explicit expected-value fallback rather than a confident w
 
 The conversation moved off whose point estimate was right and onto which assumptions
 the decision actually turned on, and what guardrails would make a choice safe enough
-to commit to. The recommendation carried its own "here's what would change our mind",
-which is what let leadership sign off.
+to commit to. The recommendation carried its own "here's what would change our mind" —
+that's what let leadership sign off.
 
 Next time I'd elicit the guardrail thresholds from stakeholders before showing any
 result. Anchoring the risk appetite first would have shortened the debate and made the
@@ -80,9 +80,9 @@ would have been directional at best and misleading at worst. But "we can't test,
 with your gut" was the other bad option on the table. Neither the naive frequentist
 read nor abandoning rigor was acceptable.
 
-A reverse-MDE check made the real constraint legible first: here's the smallest effect
-this test could detect in the time we had, and it was larger than any effect we'd
-plausibly see, so a clean A/B was the wrong tool. From there, I scoped the test to a
+A reverse-MDE check made the real constraint legible first: the smallest effect this
+test could detect in the time we had was larger than any effect we'd plausibly see, so
+a clean A/B was the wrong tool. From there, I scoped the test to a
 guardrail question it could answer, and framed the ship decision on a Bayesian read —
 posterior probability of a positive lift and expected loss if we were wrong — instead
 of a binary significance verdict. Where randomization wasn't possible at all, the job
@@ -118,7 +118,7 @@ reaches a board deck before anyone notices.
 I ran the area through a decision-readiness audit instead of a methodology debate:
 model it as a measurement graph — metrics, the decisions they feed, the guardrails, the
 instrumentation, the ownership and review rhythm — and report the decision-centric
-result. How many of this area's key decisions are backed by trusted, owned,
+result: how many of this area's key decisions are backed by trusted, owned,
 instrumented metrics, reported as a band rather than a false-precise score. Metric count
 was never the measure; the problems were counted as orphaned metrics, missing owners,
 and decisions with no metric.
