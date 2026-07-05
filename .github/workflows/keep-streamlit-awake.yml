@@ -1,0 +1,36 @@
+name: Keep Streamlit apps awake
+
+on:
+  schedule:
+    - cron: "23 */6 * * *"   # every 6h; Community Cloud hibernates after 12h without a real viewer
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: keep-streamlit-awake
+  cancel-in-progress: true
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Playwright
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      # A plain HTTP GET returns 200 without counting as a view (why the old
+      # curl-based workflow in experiment-architect was removed as broken).
+      - name: Visit apps and wake any sleepers
+        run: python scripts/keep_awake.py
+      # GitHub auto-disables cron workflows after 60 days without repo activity.
+      - name: Keep this scheduled workflow enabled
+        if: ${{ always() }}
+        uses: gautamkrishnar/keepalive-workflow@v2
