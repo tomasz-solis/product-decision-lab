@@ -55,7 +55,8 @@ experiment is feasible, when causal inference is the right fallback, and when th
 isn't strong enough to ship on.
 
 ### Measurement Maturity Framework
-[Repo](https://github.com/tomasz-solis/measurement-maturity-framework)
+[Repo](https://github.com/tomasz-solis/measurement-maturity-framework) ·
+[Live app](https://metricready.streamlit.app/)
 
 A decision-readiness audit for product metrics. It checks whether a product area has the
 ownership, instrumentation, guardrails, and review rhythm to make reliable recurring

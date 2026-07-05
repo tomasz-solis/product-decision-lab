@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tomasz Solis — Product Decision Scientist</title>
+<meta name="description" content="I build the decision systems product teams rely on when the evidence is incomplete.">
+<style>
+  :root {
+    --ds-blue: #4f6dff;
+    --ds-blue-strong: #3a56e0;
+    --ds-blue-soft: rgba(79, 109, 255, 0.12);
+    --ds-mint: #1ecf9b;
+    --ds-ink: #10131a;
+    --ds-muted: #646c79;
+    --ds-bg: #eff2f7;
+    --ds-card-bg: rgba(255, 255, 255, 0.80);
+    --ds-card-border: rgba(16, 19, 26, 0.08);
+    --ds-font-sans: "Avenir Next", "Segoe UI", "Helvetica Neue", system-ui, -apple-system, sans-serif;
+    --ds-radius-card: 24px;
+    --ds-radius-pill: 999px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--ds-bg);
+    color: var(--ds-ink);
+    font-family: var(--ds-font-sans);
+    line-height: 1.55;
+  }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 1.25rem;
+  }
+
+  a { color: var(--ds-blue-strong); }
+
+  h1, h2, h3 { line-height: 1.2; }
+
+  /* Hero */
+  .hero {
+    padding: 3rem 0 2rem;
+  }
+  .hero h1 {
+    margin: 0 0 0.15rem;
+    font-size: 2.1rem;
+  }
+  .hero .title {
+    margin: 0 0 1rem;
+    color: var(--ds-blue-strong);
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  .hero .primary {
+    max-width: 720px;
+    margin: 0 0 1rem;
+    font-size: 1.05rem;
+  }
+  .hero .thesis {
+    max-width: 720px;
+    margin: 0 0 1.25rem;
+    color: var(--ds-muted);
+    font-size: 1rem;
+  }
+  .cta {
+    display: inline-block;
+    background: var(--ds-blue);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--ds-radius-pill);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .cta:hover { background: var(--ds-blue-strong); }
+  .wake-note {
+    display: block;
+    margin-top: 0.5rem;
+    color: var(--ds-muted);
+    font-size: 0.85rem;
+  }
+
+  /* The system */
+  section.system { padding: 1.5rem 0 2.5rem; }
+  section.system h2 { margin-bottom: 0.5rem; }
+  section.system > p { max-width: 760px; color: var(--ds-muted); }
+
+  .arc {
+    display: flex;
+    align-items: stretch;
+    gap: 2rem;
+    margin: 2rem 0 1rem;
+  }
+  .arc-step {
+    position: relative;
+    flex: 1;
+    background: var(--ds-card-bg);
+    border: 1px solid var(--ds-card-border);
+    border-radius: var(--ds-radius-card);
+    padding: 1.25rem 1.5rem;
+    text-decoration: none;
+    color: var(--ds-ink);
+  }
+  .arc-step .kicker {
+    display: block;
+    color: var(--ds-blue-strong);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    font-size: 0.85rem;
+    margin-bottom: 0.35rem;
+  }
+  .arc-step .app-name {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+  .arc-step .question {
+    display: block;
+    color: var(--ds-muted);
+    font-size: 0.92rem;
+  }
+  .arc-step:not(:last-child)::after {
+    content: "→";
+    position: absolute;
+    right: -1.6rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ds-muted);
+    font-size: 1.4rem;
+  }
+  @media (max-width: 720px) {
+    .arc { flex-direction: column; gap: 1.75rem; }
+    .arc-step:not(:last-child)::after {
+      content: "↓";
+      right: auto;
+      left: 50%;
+      top: auto;
+      bottom: -1.35rem;
+      transform: translateX(-50%);
+    }
+  }
+
+  /* App cards */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0 2rem;
+  }
+  .card {
+    background: var(--ds-card-bg);
+    border: 1px solid var(--ds-card-border);
+    border-radius: var(--ds-radius-card);
+    padding: 1.5rem;
+    scroll-margin-top: 1.5rem;
+  }
+  .card h3 { margin: 0 0 0.5rem; font-size: 1.15rem; }
+  .card h3 a { color: var(--ds-ink); text-decoration: none; }
+  .card h3 a:hover { color: var(--ds-blue-strong); }
+  .card .decision-line { margin: 0 0 0.75rem; }
+  .card img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    border: 1px solid var(--ds-card-border);
+    display: block;
+    margin: 0 0 0.85rem;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0 0 0.9rem;
+  }
+  .tag {
+    background: var(--ds-blue-soft);
+    color: var(--ds-blue-strong);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--ds-radius-pill);
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  details {
+    border: 1px solid var(--ds-card-border);
+    border-radius: 12px;
+    padding: 0.75rem 1rem;
+    margin: 0 0 1rem;
+  }
+  details summary {
+    font-weight: 700;
+    cursor: pointer;
+  }
+  details p { margin: 0.75rem 0 0; }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    align-items: baseline;
+    font-size: 0.95rem;
+  }
+  .links .note {
+    color: var(--ds-muted);
+    font-size: 0.8rem;
+    margin-left: 0.35rem;
+  }
+
+  .nda {
+    max-width: 760px;
+    margin: 1rem 0 2.5rem;
+    color: var(--ds-muted);
+    font-size: 0.92rem;
+  }
+
+  /* Read one thing */
+  section.read-one { padding: 1rem 0 2.5rem; }
+  section.read-one .box {
+    background: var(--ds-card-bg);
+    border: 1px solid var(--ds-card-border);
+    border-radius: var(--ds-radius-card);
+    padding: 1.5rem 1.75rem;
+  }
+  section.read-one h2 { margin-top: 0; }
+
+  /* Routes by role */
+  section.roles { padding: 1rem 0 2.5rem; }
+  .role-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+  }
+  .role-cols h3 { margin: 0 0 0.5rem; font-size: 1rem; }
+  .role-cols p { margin: 0; color: var(--ds-muted); font-size: 0.95rem; }
+
+  /* Reuse note */
+  section.reuse { padding: 1rem 0 2.5rem; }
+  section.reuse p { max-width: 760px; }
+
+  footer {
+    border-top: 1px solid var(--ds-card-border);
+    margin-top: 1rem;
+    padding: 2rem 0 3rem;
+    color: var(--ds-muted);
+    font-size: 0.9rem;
+  }
+  footer .footnote { margin-top: 0.75rem; }
+</style>
+</head>
+<body>
+<main>
+
+  <section class="hero">
+    <h1>Tomasz Solis</h1>
+    <p class="title">Product Decision Scientist</p>
+    <p class="primary">I build the systems product teams use to decide under uncertainty —
+      measurement readiness, experimentation, and decision analysis for the common case
+      where the experiment is imperfect, the signal is noisy, and a call still has to be
+      made.</p>
+    <p class="thesis">Most product decisions are made on incomplete evidence. The work is
+      not to remove the uncertainty. It is to make the tradeoffs clear enough that a team
+      can decide well anyway.</p>
+    <a class="cta" href="https://beforeyouship.streamlit.app/">Open the hero artifact —
+      Product Decision Under Uncertainty</a>
+    <span class="wake-note">live app · wakes in about 10 seconds</span>
+  </section>
+
+  <section class="system">
+    <h2>The system</h2>
+    <p>Three questions organize the portfolio, and together they trace one product
+      decision from start to finish. Measure, test, decide. The three headline projects
+      below map onto those three questions.</p>
+    <div class="arc">
+      <a class="arc-step" href="#measure">
+        <span class="kicker">MEASURE</span>
+        <span class="app-name">Measurement Maturity Framework</span>
+        <span class="question">Can we trust our metrics enough to decide?</span>
+      </a>
+      <a class="arc-step" href="#test">
+        <span class="kicker">TEST</span>
+        <span class="app-name">Experiment Architect</span>
+        <span class="question">How do we get evidence when experiments are imperfect?</span>
+      </a>
+      <a class="arc-step" href="#decide">
+        <span class="kicker">DECIDE</span>
+        <span class="app-name">Product Decision Under Uncertainty</span>
+        <span class="question">How do we decide when the evidence is still incomplete?</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="apps">
+    <div class="cards">
+
+      <article class="card" id="measure">
+        <h3><a href="https://github.com/tomasz-solis/measurement-maturity-framework">Measurement Maturity Framework</a></h3>
+        <p class="decision-line">Good measurement isn't more dashboards. It's whether a
+          team can rely on the numbers it already has.</p>
+        <img src="assets/metricready.png" loading="lazy" alt="Measurement Maturity Framework app screenshot">
+        <div class="tags">
+          <span class="tag">measurement graph</span>
+          <span class="tag">decision-readiness audit</span>
+          <span class="tag">ownership &amp; instrumentation</span>
+          <span class="tag">readiness band</span>
+        </div>
+        <details>
+          <summary>Catching that a metric isn't decision-ready before it drives a decision.</summary>
+          <p>A product area was about to start steering recurring decisions — targets, planning,
+            ship/hold calls — off a set of metrics that looked finished. The dashboards were
+            polished and the numbers were precise.</p>
+          <p>The instinct in the room was to debate methodology: the right way to define the
+            headline metric. But the real risk was structural, not analytical. Some metrics had no
+            clear owner, the SQL lived in someone's notebook rather than anywhere reviewable, and
+            several key decisions weren't backed by a trusted, instrumented metric at all. A
+            polished chart on top of an unowned, untested definition is exactly how a wrong number
+            reaches a board deck before anyone notices.</p>
+          <p>I ran the area through a decision-readiness audit instead of a methodology debate:
+            model it as a measurement graph — metrics, the decisions they feed, the guardrails, the
+            instrumentation, the ownership and review rhythm — and report the decision-centric
+            result: how many of this area's key decisions are backed by trusted, owned,
+            instrumented metrics, reported as a band rather than a false-precise score. Metric count
+            was never the measure; the problems were counted as orphaned metrics, missing owners,
+            and decisions with no metric.</p>
+          <p>The team stopped arguing definitions and fixed the cheap structural gaps first —
+            ownership, written-down SQL, basic tests — closing the readiness gaps while they were
+            still cheap, instead of discovering them live in a planning meeting.</p>
+          <p>Next time I'd run the audit at the start of the planning cycle, not once the metrics
+            were already being wired into targets. The framework is cheapest exactly when it feels
+            least urgent.</p>
+        </details>
+        <div class="links">
+          <a href="https://metricready.streamlit.app/">Live app<span class="note">wakes in ~10s</span></a>
+          <a href="https://github.com/tomasz-solis/measurement-maturity-framework/tree/main/case_studies">Written case</a>
+        </div>
+      </article>
+
+      <article class="card" id="test">
+        <h3><a href="https://github.com/tomasz-solis/experiment-architect">Experiment Architect</a></h3>
+        <p class="decision-line">Experimentation maturity isn't sample-size arithmetic.
+          It's knowing when an experiment is feasible, when causal inference is the right
+          fallback, and when the evidence isn't strong enough to ship on.</p>
+        <img src="assets/testarchitect.png" loading="lazy" alt="Experiment Architect app screenshot">
+        <div class="tags">
+          <span class="tag">A/B sizing &amp; reverse MDE</span>
+          <span class="tag">DiD + RDD diagnostics</span>
+          <span class="tag">Bayesian expected loss</span>
+          <span class="tag">ship/hold rules</span>
+        </div>
+        <details>
+          <summary>Knowing when an experiment is feasible, and when to ship on something other than a p-value.</summary>
+          <p>A team wanted to A/B test a change, but the realistic traffic and baseline rate meant a
+            properly powered test would have run far longer than the decision window. The pressure
+            was to run it anyway and read the result early.</p>
+          <p>Running underpowered and peeking early is the classic way to ship on noise; the result
+            would have been directional at best and misleading at worst. But "we can't test, so go
+            with your gut" was the other bad option on the table. Neither the naive frequentist
+            read nor abandoning rigor was acceptable.</p>
+          <p>A reverse-MDE check made the real constraint legible first: the smallest effect this
+            test could detect in the time we had was larger than any effect we'd plausibly see, so
+            a clean A/B was the wrong tool. From there, I scoped the test to a
+            guardrail question it could answer, and framed the ship decision on a Bayesian read —
+            posterior probability of a positive lift and expected loss if we were wrong — instead
+            of a binary significance verdict. Where randomization wasn't possible at all, the job
+            was to pick the right causal fallback rather than pretend an A/B existed.</p>
+          <p>The decision stopped depending on a test that couldn't deliver in time. We shipped on
+            an explicit, loss-aware rule the team agreed to in advance, with guardrails watched
+            rather than ignored, and everyone understood what we were and weren't sure about.</p>
+          <p>Next time I'd bring the loss-aware framing into planning, not read-out. Agreeing on the
+            acceptable cost of being wrong is much easier before anyone has a result they like.</p>
+        </details>
+        <div class="links">
+          <a href="https://testarchitect.streamlit.app/">Live app<span class="note">wakes in ~10s</span></a>
+          <a href="https://github.com/tomasz-solis/experiment-architect#notes-on-method-choice">Written case</a>
+        </div>
+      </article>
+
+      <article class="card" id="decide">
+        <h3><a href="https://github.com/tomasz-solis/product-decision-under-uncertainty">Product Decision Under Uncertainty</a></h3>
+        <p class="decision-line">The point isn't to predict the future. It's to make the
+          tradeoffs visible enough that a leadership team can review the call — and to
+          answer the question point estimates can't: how far would we have to be wrong for
+          the recommendation to change?</p>
+        <img src="assets/beforeyouship.png" loading="lazy" alt="Product Decision Under Uncertainty app screenshot">
+        <div class="tags">
+          <span class="tag">Monte Carlo simulation</span>
+          <span class="tag">guardrail policy</span>
+          <span class="tag">policy frontier</span>
+          <span class="tag">assumption provenance</span>
+        </div>
+        <details>
+          <summary>Choosing between irreversible options when there's no clean experiment.</summary>
+          <p>A team faced a set of mutually exclusive, hard-to-reverse options under a fixed
+            deadline. There was no way to run a clean experiment first. The choice had to be made
+            on assumptions, and once made it couldn't be cheaply undone.</p>
+          <p>The default was a business case with one payoff number per option, maybe three if the
+            author was careful. That framing quietly assumed everyone would trade expected value
+            against tail risk one-for-one, and it hid the fact that the options had very different
+            downside shapes. The debate kept circling the point estimates, which were the least
+            trustworthy numbers in the room.</p>
+          <p>I reframed the choice as a decision under uncertainty: explicit, reviewable
+            assumptions; a Monte Carlo model of the joint world instead of a spreadsheet of
+            midpoints; and the part that actually moved people, a guardrail policy plus a frontier
+            showing how far the assumptions would have to be wrong before the recommendation
+            flipped. As it happened, no option cleared every guardrail, so the honest
+            recommendation was an explicit expected-value fallback rather than a confident winner.</p>
+          <p>The conversation moved off whose point estimate was right and onto which assumptions
+            the decision actually turned on, and what guardrails would make a choice safe enough
+            to commit to. The recommendation carried its own "here's what would change our mind" —
+            that's what let leadership sign off.</p>
+          <p>Next time I'd elicit the guardrail thresholds from stakeholders before showing any
+            result. Anchoring the risk appetite first would have shortened the debate and made the
+            fallback land as a finding rather than a surprise.</p>
+        </details>
+        <div class="links">
+          <a href="https://beforeyouship.streamlit.app/">Live app<span class="note">wakes in ~10s</span></a>
+          <a href="https://github.com/tomasz-solis/product-decision-under-uncertainty/blob/main/NARRATIVE.md">Written case</a>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="nda">This is the reusable engine. In practice it runs against real OKRs, telemetry, and
+      stakeholders I can't publish. What's public is the generalized version — and
+      generalizing it well took more judgment than the original build.</p>
+  </section>
+
+  <section class="read-one">
+    <div class="box">
+      <h2>If you read one thing, read Product Decision Under Uncertainty</h2>
+      <p>No option clears both guardrails, so the policy falls back to expected value. As
+        the case brief puts it: no option cleared every guardrail, so the honest
+        recommendation was an explicit expected-value fallback rather than a confident
+        winner.</p>
+      <div class="links">
+        <a href="https://beforeyouship.streamlit.app/">Live app<span class="note">wakes in ~10s</span></a>
+        <a href="https://github.com/tomasz-solis/product-decision-under-uncertainty/blob/main/NARRATIVE.md">NARRATIVE.md</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="roles">
+    <h2>Routes by role</h2>
+    <div class="role-cols">
+      <div>
+        <h3>Product Data Scientist / Decision Scientist</h3>
+        <p><a href="#test">Experiment Architect</a>, then <a href="#decide">Product
+          Decision Under Uncertainty</a>, then
+          <a href="https://github.com/tomasz-solis/public-signals-mislead">Public Signals
+          Mislead</a>.</p>
+      </div>
+      <div>
+        <h3>Staff / Principal Product Analyst</h3>
+        <p><a href="#decide">Product Decision Under Uncertainty</a>, then
+          <a href="#measure">Measurement Maturity Framework</a>, then
+          <a href="https://github.com/tomasz-solis/public-signals-mislead">Public Signals
+          Mislead</a>.</p>
+      </div>
+      <div>
+        <h3>Applied ML / Decision Systems</h3>
+        <p><a href="https://github.com/tomasz-solis/trackside-labs">Trackside Labs</a>,
+          then <a href="#decide">Product Decision Under Uncertainty</a>, then
+          <a href="https://github.com/tomasz-solis/dial-in">Dial In</a>.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="reuse">
+    <h2>A note on reuse</h2>
+    <p>These are tools other people can operate, not one-off analyses. Before You Ship
+      takes your own costs, volumes, and guardrail thresholds through a config template
+      and runs your case. Test Architect plans and reads your experiments. MetricReady
+      (the Measurement Maturity Framework app) audits whether your metric pack is ready
+      to steer decisions.</p>
+  </section>
+
+  <footer>
+    <div>
+      <a href="https://github.com/tomasz-solis">GitHub</a> ·
+      <a href="https://www.linkedin.com/in/tomaszsolis">LinkedIn</a> ·
+      <a href="https://github.com/tomasz-solis/product-decision-lab">Full index of the work</a>
+    </div>
+    <p class="footnote">Also in the index: product-referee, an agent-orchestrated
+      experiment-decision pipeline — kept out of the headline arc because it overlaps
+      Experiment Architect's ship/hold logic.</p>
+  </footer>
+
+</main>
+</body>
+</html>
