@@ -255,14 +255,13 @@
   <section class="hero">
     <h1>Tomasz Solis</h1>
     <p class="title">Product Decision Scientist</p>
-    <p class="primary">I build the systems product teams use to decide under uncertainty —
+    <p class="primary">I build the systems product teams use to decide under uncertainty:
       measurement readiness, experimentation, and decision analysis for the common case
-      where the experiment is imperfect, the signal is noisy, and a call still has to be
-      made.</p>
-    <p class="thesis">Most product decisions are made on incomplete evidence. The work is
-      not to remove the uncertainty. It is to make the tradeoffs clear enough that a team
-      can decide well anyway.</p>
-    <a class="cta" href="https://beforeyouship.streamlit.app/">Open the hero artifact —
+      where the experiment is imperfect and a call still has to be made.</p>
+    <p class="thesis">Most product decisions are made on incomplete evidence. The
+      uncertainty doesn't go away. The useful work is making the tradeoffs clear enough
+      that a team can decide well anyway.</p>
+    <a class="cta" href="https://beforeyouship.streamlit.app/">Open the hero artifact:
       Product Decision Under Uncertainty</a>
     <span class="wake-note">live app · wakes in about 10 seconds</span>
   </section>
@@ -296,8 +295,9 @@
 
       <article class="card" id="measure">
         <h3><a href="https://github.com/tomasz-solis/measurement-maturity-framework">Measurement Maturity Framework</a></h3>
-        <p class="decision-line">Good measurement isn't more dashboards. It's whether a
-          team can rely on the numbers it already has.</p>
+        <p class="decision-line">A decision-readiness audit for product metrics. It
+          reports how many of an area's key decisions are backed by trusted, owned,
+          instrumented metrics.</p>
         <img src="assets/metricready.png" loading="lazy" alt="Measurement Maturity Framework app screenshot">
         <div class="tags">
           <span class="tag">measurement graph</span>
@@ -307,28 +307,27 @@
         </div>
         <details>
           <summary>Catching that a metric isn't decision-ready before it drives a decision.</summary>
-          <p>A product area was about to start steering recurring decisions — targets, planning,
-            ship/hold calls — off a set of metrics that looked finished. The dashboards were
+          <p>A product area was about to start steering recurring decisions (targets, planning,
+            ship/hold calls) off a set of metrics that looked finished. The dashboards were
             polished and the numbers were precise.</p>
           <p>The instinct in the room was to debate methodology: the right way to define the
-            headline metric. But the real risk was structural, not analytical. Some metrics had no
+            headline metric. The real risk was structural, not analytical. Some metrics had no
             clear owner, the SQL lived in someone's notebook rather than anywhere reviewable, and
             several key decisions weren't backed by a trusted, instrumented metric at all. A
-            polished chart on top of an unowned, untested definition is exactly how a wrong number
+            polished chart on top of an unowned, untested definition is how a wrong number
             reaches a board deck before anyone notices.</p>
           <p>I ran the area through a decision-readiness audit instead of a methodology debate:
-            model it as a measurement graph — metrics, the decisions they feed, the guardrails, the
-            instrumentation, the ownership and review rhythm — and report the decision-centric
-            result: how many of this area's key decisions are backed by trusted, owned,
-            instrumented metrics, reported as a band rather than a false-precise score. Metric count
-            was never the measure; the problems were counted as orphaned metrics, missing owners,
-            and decisions with no metric.</p>
-          <p>The team stopped arguing definitions and fixed the cheap structural gaps first —
-            ownership, written-down SQL, basic tests — closing the readiness gaps while they were
-            still cheap, instead of discovering them live in a planning meeting.</p>
-          <p>Next time I'd run the audit at the start of the planning cycle, not once the metrics
-            were already being wired into targets. The framework is cheapest exactly when it feels
-            least urgent.</p>
+            model it as a measurement graph (metrics, the decisions they feed, the guardrails, the
+            instrumentation, the ownership and review rhythm) and report the decision-centric
+            result, meaning how many of this area's key decisions are backed by trusted, owned,
+            instrumented metrics, reported as a band rather than a false-precise score. The audit
+            counted problems as orphaned metrics, missing owners, and decisions with no metric,
+            not as a metric tally.</p>
+          <p>The team stopped arguing definitions and fixed the cheap structural gaps first:
+            ownership, written-down SQL, basic tests. The readiness gaps got closed while they
+            were still cheap, instead of surfacing live in a planning meeting.</p>
+          <p>Next time I'd run the audit at the start of the planning cycle, before the metrics
+            were wired into targets.</p>
         </details>
         <div class="links">
           <a href="https://metricready.streamlit.app/">Live app<span class="note">wakes in ~10s</span></a>
@@ -338,9 +337,9 @@
 
       <article class="card" id="test">
         <h3><a href="https://github.com/tomasz-solis/experiment-architect">Experiment Architect</a></h3>
-        <p class="decision-line">Experimentation maturity isn't sample-size arithmetic.
-          It's knowing when an experiment is feasible, when causal inference is the right
-          fallback, and when the evidence isn't strong enough to ship on.</p>
+        <p class="decision-line">A toolkit for planning and reading product experiments:
+          whether a test is feasible at all, which causal fallback to use when it isn't,
+          and whether the evidence is strong enough to ship on.</p>
         <img src="assets/testarchitect.png" loading="lazy" alt="Experiment Architect app screenshot">
         <div class="tags">
           <span class="tag">A/B sizing &amp; reverse MDE</span>
@@ -354,14 +353,13 @@
             properly powered test would have run far longer than the decision window. The pressure
             was to run it anyway and read the result early.</p>
           <p>Running underpowered and peeking early is the classic way to ship on noise; the result
-            would have been directional at best and misleading at worst. But "we can't test, so go
-            with your gut" was the other bad option on the table. Neither the naive frequentist
-            read nor abandoning rigor was acceptable.</p>
+            would have been directional at best and misleading at worst. The other option on the
+            table, skipping rigor and going with gut feel, was no better.</p>
           <p>A reverse-MDE check made the real constraint legible first: the smallest effect this
             test could detect in the time we had was larger than any effect we'd plausibly see, so
             a clean A/B was the wrong tool. From there, I scoped the test to a
-            guardrail question it could answer, and framed the ship decision on a Bayesian read —
-            posterior probability of a positive lift and expected loss if we were wrong — instead
+            guardrail question it could answer, and framed the ship decision on a Bayesian read
+            (posterior probability of a positive lift, and expected loss if we were wrong) instead
             of a binary significance verdict. Where randomization wasn't possible at all, the job
             was to pick the right causal fallback rather than pretend an A/B existed.</p>
           <p>The decision stopped depending on a test that couldn't deliver in time. We shipped on
@@ -378,10 +376,10 @@
 
       <article class="card" id="decide">
         <h3><a href="https://github.com/tomasz-solis/product-decision-under-uncertainty">Product Decision Under Uncertainty</a></h3>
-        <p class="decision-line">The point isn't to predict the future. It's to make the
-          tradeoffs visible enough that a leadership team can review the call — and to
-          answer the question point estimates can't: how far would we have to be wrong for
-          the recommendation to change?</p>
+        <p class="decision-line">Decision analysis for one irreversible platform
+          investment. The output is a recommendation a leadership team can review, plus
+          how far the assumptions would have to be wrong before the recommendation
+          changes.</p>
         <img src="assets/beforeyouship.png" loading="lazy" alt="Product Decision Under Uncertainty app screenshot">
         <div class="tags">
           <span class="tag">Monte Carlo simulation</span>
@@ -400,15 +398,15 @@
             downside shapes. The debate kept circling the point estimates, which were the least
             trustworthy numbers in the room.</p>
           <p>I reframed the choice as a decision under uncertainty: explicit, reviewable
-            assumptions; a Monte Carlo model of the joint world instead of a spreadsheet of
-            midpoints; and the part that actually moved people, a guardrail policy plus a frontier
+            assumptions, and a Monte Carlo model of the joint world instead of a spreadsheet of
+            midpoints. The part that moved people was a guardrail policy plus a frontier
             showing how far the assumptions would have to be wrong before the recommendation
-            flipped. As it happened, no option cleared every guardrail, so the honest
-            recommendation was an explicit expected-value fallback rather than a confident winner.</p>
+            flipped. No option cleared every guardrail, so the honest recommendation was an
+            explicit expected-value fallback rather than a confident winner.</p>
           <p>The conversation moved off whose point estimate was right and onto which assumptions
             the decision actually turned on, and what guardrails would make a choice safe enough
-            to commit to. The recommendation carried its own "here's what would change our mind" —
-            that's what let leadership sign off.</p>
+            to commit to. The recommendation carried its own list of what would change our mind,
+            which is what let leadership sign off.</p>
           <p>Next time I'd elicit the guardrail thresholds from stakeholders before showing any
             result. Anchoring the risk appetite first would have shortened the debate and made the
             fallback land as a finding rather than a surprise.</p>
@@ -421,18 +419,18 @@
 
     </div>
 
-    <p class="nda">This is the reusable engine. In practice it runs against real OKRs, telemetry, and
-      stakeholders I can't publish. What's public is the generalized version — and
-      generalizing it well took more judgment than the original build.</p>
+    <p class="nda">This is the reusable engine. The production versions ran against real OKRs,
+      telemetry, and stakeholders I can't publish. What's public is the generalized version,
+      and generalizing it well was harder than the original build.</p>
   </section>
 
   <section class="read-one">
     <div class="box">
       <h2>If you read one thing, read Product Decision Under Uncertainty</h2>
-      <p>No option clears both guardrails, so the policy falls back to expected value. As
-        the case brief puts it: no option cleared every guardrail, so the honest
-        recommendation was an explicit expected-value fallback rather than a confident
-        winner.</p>
+      <p>In the current published run, no option clears both guardrails, so the policy
+        falls back to expected value. That is the interesting result: an honest
+        expected-value fallback with its guardrail failures shown, rather than a
+        confident winner.</p>
       <div class="links">
         <a href="https://beforeyouship.streamlit.app/">Live app<span class="note">wakes in ~10s</span></a>
         <a href="https://github.com/tomasz-solis/product-decision-under-uncertainty/blob/main/NARRATIVE.md">NARRATIVE.md</a>
@@ -482,7 +480,7 @@
       <a href="https://github.com/tomasz-solis/product-decision-lab">Full index of the work</a>
     </div>
     <p class="footnote">Also in the index: product-referee, an agent-orchestrated
-      experiment-decision pipeline — kept out of the headline arc because it overlaps
+      experiment-decision pipeline. It stays out of the headline arc because it overlaps
       Experiment Architect's ship/hold logic.</p>
   </footer>
 

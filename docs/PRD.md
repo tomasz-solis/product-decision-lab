@@ -1,8 +1,8 @@
 # PRD — Product Decision Lab (landing page)
 
 **Author:** Tomasz Solis
-**Status:** Draft v0.2 — for iteration
-**Last updated:** 2026-07-02
+**Status:** Draft v0.3 — for iteration
+**Last updated:** 2026-07-05
 
 Companion docs: [`identity-block.md`](identity-block.md) (copy) and
 [`case-briefs.md`](case-briefs.md) (the "in practice" layer). Settled decisions are in
@@ -13,16 +13,16 @@ Companion docs: [`identity-block.md`](identity-block.md) (copy) and
 ## 1. Purpose
 
 One fast, role-routable page that gets a recruiter or hiring manager to want a
-conversation within about a minute — and gives someone in my network a single link they
+conversation within about a minute, and gives someone in my network a single link they
 can forward when they vouch for me.
 
 ## 2. What the page is optimized for
 
-Getting the interview, not winning the role. That distinction drives every tradeoff
-below: legibility and zero friction matter more than analytical depth here, because
-depth only pays off once someone has decided to look closely.
+Getting the interview, not winning the role. Legibility and low friction matter
+more than analytical depth here, because depth only pays off once someone has
+decided to look closely.
 
-The path a reviewer takes, and where portfolios usually fall down:
+The path a reviewer takes, and where portfolios usually lose them:
 
 | Step | The question in their head | Where most portfolios lose them |
 |---|---|---|
@@ -31,13 +31,13 @@ The path a reviewer takes, and where portfolios usually fall down:
 | 3. One-minute skim | "Real substance, or filler?" | Too dense and it intimidates; too thin and it's dismissed |
 | 4. Reach out | "Is a 30-minute call worth it?" | No specific hook; no sense of a real operator |
 
-The work already wins step 3. The page exists to stop losing steps 1, 2, and 4, which
-are all framing and distribution rather than more building.
+The work already wins step 3. The page exists to stop losing steps 1, 2, and 4,
+which are framing and distribution problems rather than building problems.
 
 ## 3. Settled decisions
 
-- **Positioning:** Product Decision Scientist (see `identity-block.md`). Systems thinking
-  is the thesis, shown by the work, not the title.
+- **Positioning:** Product Decision Scientist (see `identity-block.md`). Systems
+  thinking is the thesis, shown by the work, not the title.
 - **Three headline apps**, read as one system: Measurement Maturity (can we trust our
   metrics?), then Experiment Architect (how do we get evidence?), then Decision Under
   Uncertainty (how do we decide when the evidence is still incomplete?). Measure, test,
@@ -47,8 +47,14 @@ are all framing and distribution rather than more building.
 - **The page stays thin; the apps stay deep.** If the wrapper reads as the main
   artifact, it works against a senior candidate.
 - **NDA framing is matter-of-fact, not defensive** (see `identity-block.md`). The page
-  never ties work to a named employer.
+  never ties work to a named employer. One shared paragraph after the app cards,
+  not repeated per card.
 - **The one thing to read first is Product Decision Under Uncertainty.**
+- **Host and URL (settled 2026-07-04):** GitHub Pages, branch deploy from `main`
+  root, at `tomasz-solis.github.io/product-decision-lab`. A custom domain can be
+  added later without rework.
+- **Off-thesis repos stay off the page (settled 2026-07-04):** the footer's link
+  to the full README index covers them.
 
 ## 4. Audience
 
@@ -71,31 +77,30 @@ are all framing and distribution rather than more building.
 - Not a blog, and not a rebuild of the README (link to it instead).
 - Not a per-app deep dive; that's each repo's job.
 - No auth, no backend, no CMS.
-- Not trying to win the role. That's the interview's job.
+- Winning the role is the interview's job, not the page's.
 
 ## 6. What success looks like
 
-Qualitative, because that's honest for a portfolio page.
+The criteria are qualitative. The one number that matters is replies and
+interview invites per batch of outreach, tracked by hand.
 
 - A peer can repeat the measure–test–decide arc after one read.
 - A non-technical reader can say what each app is for, in plain terms.
 - Time to grasp the thesis is under ten seconds (test it on three people).
 - No broken or asleep first impressions during a skim.
-- The number that actually matters: replies and interview invites per batch of outreach,
-  tracked by hand as I share it.
 
 ## 7. Page structure (single page, thin)
 
-1. **Hero** — name, title, thesis line, one call to action to the hero artifact.
-2. **The system** — the three apps as one diagram (measure, test, decide), a sentence each
-   on the decision it improves. This is the centerpiece.
-3. **Three app cards** — spec in §8.
-4. **Read one thing** — Decision Under Uncertainty, with the honest hook: no option clears
-   the guardrails, and why that's the interesting result.
-5. **Routes by role** — three short columns reusing the README's review paths.
-6. **A note on reuse** — one paragraph: these are tools other people can operate, not
-   one-off analyses.
-7. **Footer** — GitHub, LinkedIn, the full README index, the `product-referee` footnote.
+1. **Hero**: name, title, thesis line, one call to action to the hero artifact.
+2. **The system**: the three apps as one diagram (measure, test, decide), a sentence
+   each on the decision it improves. This is the centerpiece.
+3. **Three app cards**: spec in §8.
+4. **Read one thing**: Decision Under Uncertainty, with the honest hook that no option
+   clears the guardrails, and why that is the interesting result.
+5. **Routes by role**: three short columns reusing the README's review paths.
+6. **A note on reuse**: one paragraph making clear these are tools other people can
+   operate, not one-off analyses.
+7. **Footer**: GitHub, LinkedIn, the full README index, the `product-referee` footnote.
 
 ## 8. App card spec
 
@@ -105,7 +110,7 @@ Qualitative, because that's honest for a portfolio page.
 - A static screenshot that renders even when the app is asleep.
 - Three or four method tags.
 - A quiet "wakes in about 10s" note on the live link.
-- The NDA line from `identity-block.md`.
+- The shared NDA paragraph sits once after the cards (see §3).
 - Optional: a short walkthrough clip.
 
 ## 9. Requirements
@@ -117,7 +122,10 @@ Qualitative, because that's honest for a portfolio page.
 - A plain-language top layer, with the technical depth one click down.
 
 **Non-functional**
-- Keep-awake on all three apps (Experiment Architect already has it; copy it across).
+- Keep-awake on all three apps. A scheduled Playwright workflow in this repo
+  visits each app every six hours with a real browser session; a plain HTTP GET
+  returns 200 without counting as viewer activity, which is why the earlier
+  curl-based workflow was removed as broken.
 - Fallback-first: the page holds its value even if all three apps are down.
 - Any headline numbers match each repo's published artifacts. The repos already
   content-address their artifacts, so reuse those rather than restating by hand.
@@ -134,27 +142,30 @@ Qualitative, because that's honest for a portfolio page.
 
 ## 11. Open questions
 
-- **Q1 — Host:** GitHub Pages (static, never sleeps) or a Streamlit hub page (on-brand but
-  adds a fourth app that can sleep)? Leaning GitHub Pages.
-- **Q2 — URL:** custom domain, or `tomasz-solis.github.io/product-decision-lab`?
-- **Q3 — Off-thesis repos:** a "more work" row on the page, or leave them on the GitHub
-  profile with the "same thinking at lower stakes" framing?
-- **Q4 — Walkthrough clips:** in v1, or a fast follow?
-- **Q5 — NDA framing:** one shared paragraph up top, or repeated on each card?
+- **Q4 — Walkthrough clips:** fast follow after launch, not v1.
+
+Resolved and moved to §3: host and URL (Q1, Q2), off-thesis repos (Q3), NDA
+placement (Q5).
 
 ## 12. Milestones
 
-1. Lock the thesis and the three-app arc copy. (Drafted in `identity-block.md`.)
-2. Write and edit the three case briefs. (Drafts in `case-briefs.md`.)
-3. Capture screenshots; confirm a fallback artifact exists per app.
-4. Build the static page.
-5. Keep-awake on all three apps; check links and fallbacks.
+1. ~~Lock the thesis and the three-app arc copy.~~ Done (`identity-block.md`).
+2. ~~Write and edit the three case briefs.~~ Done as drafts with edit points
+   (`case-briefs.md`); real anonymized specifics still to be filled in.
+3. ~~Capture screenshots; confirm a fallback artifact exists per app.~~ Done
+   (`assets/`, all three fallback links verified).
+4. ~~Build the static page.~~ Done (`index.html`).
+5. Keep-awake on all three apps; check links and fallbacks. Workflow and link
+   check are in place; verify the first scheduled runs after deploy.
 6. Point LinkedIn, the GitHub README, and the CV at the lab.
 7. Test with three peers against the ten-second and "repeat the arc" checks; revise.
 8. Forward it to at least ten warm contacts with a one-line ask.
 
 ## Changelog
 
+- **v0.3 (2026-07-05)** — Page built (index.html, screenshots, keep-awake
+  workflow), prepared for deploy on GitHub Pages. Q1–Q3 and Q5 settled and moved
+  to §3. Prose pass to the house voice.
 - **v0.2 (2026-07-02)** — Positioning set to Product Decision Scientist; prose pass.
 - **v0.1 (2026-06-28)** — First draft. Objective set to getting the interview; three-app
   arc and `product-referee`-as-footnote settled; companion copy and case-brief docs created.
