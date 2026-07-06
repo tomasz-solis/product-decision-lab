@@ -45,7 +45,7 @@ which are framing and distribution problems rather than building problems.
 - **`product-referee` is a footnote, not a headline.** It overlaps Experiment
   Architect's ship/hold logic and would dilute the arc.
 - **The page stays thin; the apps stay deep.** If the wrapper reads as the main
-  artifact, it works against a senior candidate.
+  piece of work, it works against a senior candidate.
 - **NDA framing is matter-of-fact, not defensive** (see `identity-block.md`). The page
   never ties work to a named employer. One shared paragraph after the app cards,
   not repeated per card.
@@ -61,7 +61,7 @@ which are framing and distribution problems rather than building problems.
 | Reader | Time | Wants | What the page owes them |
 |---|---|---|---|
 | Recruiter | ~30s | Level and fit, plus a sign of seniority | Thesis and a paste-ready level line, in plain language |
-| Hiring manager | 2–3 min | One strong artifact, and evidence of judgment | The hero artifact, the systems arc, one case brief |
+| Hiring manager | 2–3 min | One strong piece of work, and evidence of judgment | The start-here app, the systems arc, one case brief |
 | Technical interviewer | deep | Real depth, code, methods | Direct links to repos, narrative and methods docs, live apps |
 
 ## 5. Goals and non-goals
@@ -91,7 +91,8 @@ interview invites per batch of outreach, tracked by hand.
 
 ## 7. Page structure (single page, thin)
 
-1. **Hero**: name, title, thesis line, one call to action to the hero artifact.
+1. **Hero**: name, title, thesis line, one "Start here" link to Product Decision
+   Under Uncertainty.
 2. **The system**: the three apps as one diagram (measure, test, decide), a sentence
    each on the decision it improves. This is the centerpiece.
 3. **Three app cards**: spec in §8.
