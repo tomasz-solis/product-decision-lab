@@ -6,8 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  actions: write
+  contents: read
 
 concurrency:
   group: keep-streamlit-awake
@@ -30,7 +29,3 @@ jobs:
       # curl-based workflow in experiment-architect was removed as broken).
       - name: Visit apps and wake any sleepers
         run: python scripts/keep_awake.py
-      # GitHub auto-disables cron workflows after 60 days without repo activity.
-      - name: Keep this scheduled workflow enabled
-        if: ${{ always() }}
-        uses: gautamkrishnar/keepalive-workflow@v2
