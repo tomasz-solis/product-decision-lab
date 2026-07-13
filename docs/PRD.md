@@ -130,6 +130,10 @@ interview invites per batch of outreach, tracked by hand.
 - Fallback-first: the page holds its value even if all three apps are down.
 - Any headline numbers match each repo's published artifacts. The repos already
   content-address their artifacts, so reuse those rather than restating by hand.
+- GitHub disables schedule-triggered workflows after 60 days of repo
+  inactivity, which would silently stop the keep-awake job and let all three
+  apps hibernate. A GITHUB_TOKEN/Actions-bot commit does not reset that clock,
+  so the mitigation is a periodic manual re-trigger or a real commit.
 
 ## 10. Risks
 
@@ -156,8 +160,9 @@ placement (Q5).
 3. ~~Capture screenshots; confirm a fallback artifact exists per app.~~ Done
    (`assets/`, all three fallback links verified).
 4. ~~Build the static page.~~ Done (`index.html`).
-5. Keep-awake on all three apps; check links and fallbacks. Workflow and link
-   check are in place; verify the first scheduled runs after deploy.
+5. Keep-awake on all three apps; check links and fallbacks. Keep-awake workflow
+   is in place; links and fallbacks were checked manually (no automated
+   link-checker exists). Verify the first scheduled runs after deploy.
 6. Point LinkedIn, the GitHub README, and the CV at the lab.
 7. Test with three peers against the ten-second and "repeat the arc" checks; revise.
 8. Forward it to at least ten warm contacts with a one-line ask.

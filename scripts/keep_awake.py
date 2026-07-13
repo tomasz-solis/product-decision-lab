@@ -3,8 +3,6 @@ never hibernates them. A plain HTTP GET returns 200 but does not count as
 viewer activity; only a browser session does. If an app is already asleep,
 click Streamlit's "Yes, get this app back up!" button and wait for boot.
 """
-from __future__ import annotations
-
 import sys
 
 from playwright.sync_api import sync_playwright
@@ -16,6 +14,7 @@ APPS = (
 )
 
 WAKE_BUTTON_TEXT = "get this app back up"
+STREAMLIT_APP_SELECTOR = '[data-testid="stApp"]'
 
 
 def visit(page, url: str) -> None:
@@ -27,6 +26,11 @@ def visit(page, url: str) -> None:
         wake.first.click()
         page.wait_for_timeout(90_000)  # give the container time to boot
     page.wait_for_timeout(20_000)  # hold the session so the visit registers
+    # Confirm the app actually came up rather than trusting the sleep above:
+    # a still-asleep or broken-render app must fail the job, not report OK.
+    if wake.count() > 0:
+        raise RuntimeError(f"{url}: still showing the wake button after waiting")
+    page.wait_for_selector(STREAMLIT_APP_SELECTOR, timeout=15_000)
     print(f"{url}: OK")
 
 
