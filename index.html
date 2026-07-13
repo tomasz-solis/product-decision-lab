@@ -26,16 +26,11 @@
 
 <!-- Twitter / X -->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tomasz Solis — Product Decision Scientist">
-<meta name="twitter:description" content="Measure, test, decide. Three working tools for product teams deciding under uncertainty.">
-<meta name="twitter:image" content="https://tomasz-solis.github.io/product-decision-lab/assets/og-image.png">
-<meta name="twitter:image:alt" content="Tomasz Solis, Product Decision Scientist. Measure, test, decide.">
 <style>
   :root {
     --ds-blue: #4f6dff;
     --ds-blue-strong: #3a56e0;
     --ds-blue-soft: rgba(79, 109, 255, 0.12);
-    --ds-mint: #1ecf9b;
     --ds-ink: #10131a;
     --ds-muted: #646c79;
     --ds-bg: #eff2f7;
@@ -107,6 +102,16 @@
     color: var(--ds-muted);
     font-size: 0.85rem;
   }
+  .hero .links { margin: 0.85rem 0 0.35rem; }
+  .hero blockquote.recruiter-line {
+    margin: 1rem 0 0;
+    max-width: 720px;
+    padding: 0.85rem 1.1rem;
+    border: 1px solid var(--ds-card-border);
+    border-radius: 12px;
+    color: var(--ds-muted);
+    font-size: 0.92rem;
+  }
 
   /* The system */
   section.system { padding: 1.5rem 0 2.5rem; }
@@ -171,7 +176,7 @@
   /* App cards */
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
     gap: 1.5rem;
     margin: 1.5rem 0 2rem;
   }
@@ -253,7 +258,7 @@
   section.roles { padding: 1rem 0 2.5rem; }
   .role-cols {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
     gap: 1.5rem;
     margin-top: 1.25rem;
   }
@@ -285,10 +290,22 @@
       where the experiment is imperfect and a call still has to be made.</p>
     <p class="thesis">Most product decisions are made on incomplete evidence. The
       uncertainty doesn't go away. The useful work is making the tradeoffs clear enough
-      that a team can decide well anyway.</p>
+      that a team can decide well anyway. In the flagship case below, no option clears
+      every guardrail, so the honest recommendation is an expected-value fallback, not a
+      confident winner.</p>
     <a class="cta" href="https://beforeyouship.streamlit.app/">Start here: Product
       Decision Under Uncertainty</a>
     <span class="wake-note">live app · wakes in about 10 seconds</span>
+    <div class="links">
+      <a href="mailto:tomasz.solis@gmail.com">tomasz.solis@gmail.com</a>
+      <a href="https://www.linkedin.com/in/tomaszsolis">LinkedIn</a>
+    </div>
+    <span class="wake-note">Open to Senior/Staff Product Data Scientist &amp; Decision
+      Science roles.</span>
+    <blockquote class="recruiter-line">Product Decision Scientist. I build the systems
+      product teams use to decide under uncertainty: measurement readiness,
+      experimentation design, and decision analysis when the evidence is incomplete. I
+      work on the decision system rather than one-off analyses.</blockquote>
   </section>
 
   <section class="system">
@@ -452,7 +469,7 @@
   <section class="read-one">
     <div class="box">
       <h2>If you read one thing, read Product Decision Under Uncertainty</h2>
-      <p>In the current published run, no option clears both guardrails, so the policy
+      <p>In the current published run, no option clears the guardrails, so the policy
         falls back to expected value. That is the interesting result: an honest
         expected-value fallback with its guardrail failures shown, rather than a
         confident winner.</p>
